@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -6,10 +6,17 @@ import './App.css'
 // Class Components
 
 const Card = ({ title }) => {
+  const [count, setCount] = useState(0);
+
   const [hasLiked, setHasLiked] = useState(false);
 
+  useEffect(() => {
+    console.log(`${title} has been linked: ${hasLiked}`);
+  });
+
   return (
-    <div className='card'>
+    <div className='card' onClick={() => setCount((prevState) => 
+    prevState + 1)}>
       <h2>{title}</h2>
 
       <button onClick={() => setHasLiked(!hasLiked)}>
@@ -26,7 +33,6 @@ const App = () => {
       <Card title="Lion King"/>
       <Card title="Avatar"/>
     </div>
-    
   )
 }
 
